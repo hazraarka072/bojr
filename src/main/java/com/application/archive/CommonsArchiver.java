@@ -89,6 +89,8 @@ class CommonsArchiver implements Archiver {
 
             if (!entry.isDirectory()) {
                 IOUtils.copy(input, file);
+            }else{
+                IOUtils.requireDirectory(file);
             }
 
             FileModeMapper.map(entry, file);
