@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ExtractingReport {
@@ -31,8 +32,8 @@ public class ExtractingReport {
 			reportingFileWriter = new FileWriter(destination.getPath() + "/"+ reportingFileName);
 			
 			reportingFileWriter.write("   Extracted file and folders\n");
-			reportingFileWriter.write("================================\n");			
-			
+			reportingFileWriter.write("================================\n");
+			Collections.sort(fileNameList);
 			for (final String fileName : fileNameList) {
 				reportingFileWriter.write(fileName + "\n");
 			}	
