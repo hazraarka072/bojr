@@ -42,9 +42,12 @@ class CommonsArchiver implements Archiver {
     public File create(String archive, File destination, File... sources) throws IOException {
 
         IOUtils.requireDirectory(destination);
-
-        File archiveFile = createNewArchiveFile(archive, getFilenameExtension(), destination);
-
+        File archiveFile;
+        try {
+            archiveFile = createNewArchiveFile(archive, getFilenameExtension(), destination);
+        }catch(IOException ioException){
+            throw new IllegalArgumentException("Do not have write permission for following directory :"+destination);
+        }
         ArchiveOutputStream outputStream = null;
         try {
             outputStream = createArchiveOutputStream(archiveFile);
